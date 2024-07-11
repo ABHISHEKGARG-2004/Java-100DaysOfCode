@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Day11 {
+    public static void Swap(int a , int b){
+        int temp = a;
+        a = b;
+        b = temp;
+        System.out.println("A is: " + a);
+        System.out.println("B is: " + b);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter A: ");
+        int a = sc.nextInt();
+        System.out.print("Enter B: ");
+        int b = sc.nextInt();
+        System.out.println("Numbers after swap: ");
+        Swap(a, b);
+        sc.close();
+    }
+}
