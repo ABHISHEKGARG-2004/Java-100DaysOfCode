@@ -1,0 +1,28 @@
+public class Basic {
+
+    public static int getLargest(int arr[]){
+        int largest = Integer.MIN_VALUE; // Represent -infinity
+        for(int i = 0 ; i < arr.length; i++){
+            if(largest < arr[i]){
+                largest = arr[i];
+            }
+        }
+        return largest;
+    }
+
+    public static int getSmallest(int arr[]){
+        int smallest = Integer.MAX_VALUE; // Represent +infinity
+        for(int i = 0; i < arr.length; i++){
+            if(smallest > arr[i]){
+                smallest = arr[i];
+            }
+        }
+        return smallest;
+    }
+
+    public static void main(String[] args) {
+        int arr[] = {5, 1, -1, 7, 5, 2};
+        System.out.println("Largest element in array is -> " + getLargest(arr));
+        System.out.println("Smallest element in array is -> " + getSmallest(arr));
+    }
+}
