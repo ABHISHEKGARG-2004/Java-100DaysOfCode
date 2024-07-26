@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class _2DArray {
+    public static void main(String[] args) {
+        int a[][] = new int[3][3];
+        int b[][] = new int[3][3];
+        int res[][] = new int[3][3];
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input for matrix A
+        System.out.println("Enter elements of matrix A:");
+        for (int i = 0; i < a.length; i++) {
+            for (int j = 0; j < a[i].length; j++) {
+                a[i][j] = sc.nextInt();
+            }
+        }
+
+        // Input for matrix B
+        System.out.println("Enter elements of matrix B:");
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < b[i].length; j++) {
+                b[i][j] = sc.nextInt();
+            }
+        }
+
+        // Multiplying matrices A and B
+        for(int m = 0; m < a.length; m++) {
+            for(int k = 0; k < b[0].length; k++) {
+                for(int n = 0; n < b.length; n++) {
+                    res[m][k] += a[m][n] * b[n][k];
+                }
+            }
+        }
+
+        // Displaying the resultant matrix
+        System.out.println("Resultant Matrix:");
+        for(int i = 0; i < res.length; i++) {
+            for(int j = 0; j < res[i].length; j++) {
+                System.out.print(res[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
