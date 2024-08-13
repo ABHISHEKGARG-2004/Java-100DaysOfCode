@@ -1,0 +1,25 @@
+public class _100DaysofCode {
+    public static void findNextGreaterElement(int[] nums) {
+        int[] nge = new int[nums.length];
+        
+        for (int i = 0; i < nums.length; i++) {
+            nge[i] = -1; // Default value if no NGE is found
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[j] > nums[i]) {
+                    nge[i] = nums[j];
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Next Greater Elements: ");
+        for (int num : nge) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {4, 5, 2, 10, 8};
+        findNextGreaterElement(nums);
+    }
+}
