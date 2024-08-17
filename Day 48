@@ -1,0 +1,30 @@
+public class MaximizeSumAfterKNegations {
+    public static int maximizeSum(int[] nums, int k) {
+        Arrays.sort(nums);
+        
+        for (int i = 0; i < nums.length && k > 0; i++) {
+            if (nums[i] < 0) {
+                nums[i] = -nums[i];
+                k--;
+            }
+        }
+        
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        
+        if (k % 2 == 1) {
+            Arrays.sort(nums);
+            sum -= 2 * nums[0];
+        }
+        
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {2, -3, -1, 5, -4};
+        int k = 2;
+        System.out.println("Maximized Sum: " + maximizeSum(nums, k));
+    }
+}
