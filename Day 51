@@ -1,0 +1,29 @@
+public class _100DaysOfCode {
+
+    public static int findLength(int[] A, int[] B) {
+        int maxLength = 0;
+        int m = A.length;
+        int n = B.length;
+                for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int length = 0;
+                
+                while (i + length < m && j + length < n && A[i + length] == B[j + length]) {
+                    length++;
+                }
+                
+                maxLength = Math.max(maxLength, length);
+            }
+        }
+        
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        int[] A = {1, 2, 3, 2, 1};
+        int[] B = {3, 2, 1, 4, 7};
+        
+        int result = findLength(A, B);
+        System.out.println("Maximum Length of Repeated Subarray: " + result);  // Output: 3
+    }
+}
