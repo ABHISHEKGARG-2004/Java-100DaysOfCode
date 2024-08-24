@@ -1,0 +1,32 @@
+public class MinimumTiles {
+
+    // Method to compute the GCD of two numbers
+    public static int gcd(int a, int b) {
+        if (b == 0) {
+            return a;
+        }
+        return gcd(b, a % b);
+    }
+
+    public static int minimumTiles(int L, int B) {
+        // Find the side of the largest square tile
+        int tileSide = gcd(L, B);
+        
+        // Calculate the area of the floor
+        int floorArea = L * B;
+        
+        // Calculate the area of one tile
+        int tileArea = tileSide * tileSide;
+        
+        // Calculate the number of tiles required
+        return floorArea / tileArea;
+    }
+
+    public static void main(String[] args) {
+        int L = 12;
+        int B = 42;
+
+        int result = minimumTiles(L, B);
+        System.out.println("Minimum number of tiles required: " + result);
+    }
+}
