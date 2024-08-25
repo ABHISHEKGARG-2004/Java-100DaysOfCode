@@ -1,0 +1,25 @@
+public class SubarraySum{
+
+    public static int subarraySum(int[] nums, int target) {
+        int count = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int sum = 0;
+            for (int j = i; j < nums.length; j++) {
+                sum += nums[j];
+                if (sum == target) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 1, 1};
+        int target = 2;
+        int result = subarraySum(nums, target);
+        System.out.println("Number of subarrays with sum equal to " + target + " = " + result);
+    }
+}
