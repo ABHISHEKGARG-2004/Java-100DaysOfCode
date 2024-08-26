@@ -1,0 +1,38 @@
+public class ThreeSumBasic {
+
+    public static void findTriplets(int[] nums) {
+        // Sort the array
+        Arrays.sort(nums);
+
+        // Outer loop for the first element
+        for (int i = 0; i < nums.length - 2; i++) {
+            // Skip duplicates for the first element
+            if (i > 0 && nums[i] == nums[i - 1]) {
+                continue;
+            }
+            // Second loop for the second element
+            for (int j = i + 1; j < nums.length - 1; j++) {
+                // Skip duplicates for the second element
+                if (j > i + 1 && nums[j] == nums[j - 1]) {
+                    continue;
+                }
+                // Third loop for the third element
+                for (int k = j + 1; k < nums.length; k++) {
+                    // Skip duplicates for the third element
+                    if (k > j + 1 && nums[k] == nums[k - 1]) {
+                        continue;
+                    }
+                    // Check if the triplet sum is zero
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        System.out.println("Triplet found: " + nums[i] + ", " + nums[j] + ", " + nums[k]);
+                    }
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {-1, 0, 1, 2, -1, -4};
+        findTriplets(nums);
+    }
+}
