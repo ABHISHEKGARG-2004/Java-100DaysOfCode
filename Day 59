@@ -1,0 +1,46 @@
+public class DiagonalTraversalBasic {
+
+    public static void diagonalOrder(int[][] mat) {
+        if (mat == null || mat.length == 0) {
+            return;
+        }
+
+        int rows = mat.length;
+        int cols = mat[0].length;
+
+        // Traverse from the first element of the first row to the last element of the first row
+        for (int col = 0; col < cols; col++) {
+            int r = 0;
+            int c = col;
+
+            while (r < rows && c >= 0) {
+                System.out.print(mat[r][c] + " ");
+                r++;
+                c--;
+            }
+        }
+
+        // Traverse from the first element of the last column to the last element of the last row
+        for (int row = 1; row < rows; row++) {
+            int r = row;
+            int c = cols - 1;
+
+            while (r < rows && c >= 0) {
+                System.out.print(mat[r][c] + " ");
+                r++;
+                c--;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[][] mat = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        System.out.println("Diagonal Traversal of the matrix:");
+        diagonalOrder(mat);
+    }
+}
