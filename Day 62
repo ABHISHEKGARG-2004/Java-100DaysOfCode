@@ -1,0 +1,28 @@
+public class CountAndSay {
+
+    public static String countAndSay(int n) {
+        if (n == 1) return "1";
+        
+        String prevTerm = countAndSay(n - 1);
+        StringBuilder currentTerm = new StringBuilder();
+        
+        int count = 1;
+        for (int i = 1; i < prevTerm.length(); i++) {
+            if (prevTerm.charAt(i) == prevTerm.charAt(i - 1)) {
+                count++;
+            } else {
+                currentTerm.append(count).append(prevTerm.charAt(i - 1));
+                count = 1;
+            }
+        }
+        
+        currentTerm.append(count).append(prevTerm.charAt(prevTerm.length() - 1));
+        
+        return currentTerm.toString();
+    }
+
+    public static void main(String[] args) {
+        int n = 4;
+        System.out.println("The " + n + "th term in the Count and Say sequence is: " + countAndSay(n));
+    }
+}
