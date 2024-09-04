@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class FourSumBasic {
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        int n = nums.length;
+
+        // Sort the array to handle duplicates easily
+        Arrays.sort(nums);
+
+        // Use four nested loops to try every combination of four elements
+        for (int i = 0; i < n - 3; i++) {
+            // Skip duplicates for the first element
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+            for (int j = i + 1; j < n - 2; j++) {
+                // Skip duplicates for the second element
+                if (j > i + 1 && nums[j] == nums[j - 1]) continue;
+
+                for (int k = j + 1; k < n - 1; k++) {
+                    // Skip duplicates for the third element
+                    if (k > j + 1 && nums[k] == nums[k - 1]) continue;
+
+                    for (int l = k + 1; l < n; l++) {
+                        // Skip duplicates for the fourth element
+                        if (l > k + 1 && nums[l] == nums[l - 1]) continue;
+
+                        // Check if the sum of the four numbers equals the target
+                        if (nums[i] + nums[j] + nums[k] + nums[l] == target) {
+                            result.add(Arrays.asList(nums[i], nums[j], nums[k], nums[l]));
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1, 0, -1, 0, -2, 2};
+        int target = 0;
+        List<List<Integer>> quadruplets = fourSum(nums, target);
+        System.out.println(quadruplets);
+    }
+}
