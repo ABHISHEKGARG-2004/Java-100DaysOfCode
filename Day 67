@@ -1,0 +1,32 @@
+import java.util.Arrays;
+
+public class CoinChangeBasic {
+    
+    public static int coinChange(int[] coins, int amount) {
+        // Sort coins in descending order
+        Arrays.sort(coins);
+        
+        // To store the minimum number of coins needed
+        int count = 0;
+        
+        // Start from the largest coin and work down
+        for (int i = coins.length - 1; i >= 0; i--) {
+            // While the current coin can be used, use it as much as possible
+            while (amount >= coins[i]) {
+                amount -= coins[i];
+                count++; // Increment the coin count
+            }
+        }
+        
+        // If the amount is 0, return the number of coins, else return -1 (no solution)
+        return amount == 0 ? count : -1;
+    }
+
+    public static void main(String[] args) {
+        int[] coins = {1, 2, 5}; // Coin denominations
+        int amount = 11; // Target amount
+        
+        int result = coinChange(coins, amount);
+        System.out.println(result); // Output: 3
+    }
+}
