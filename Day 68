@@ -1,0 +1,56 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class GroupAnagramsBasic {
+
+    // Helper method to check if two words are anagrams
+    public static boolean areAnagrams(String s1, String s2) {
+        if (s1.length() != s2.length()) return false;
+        
+        int[] count1 = new int[26];  // Count for the first word
+        int[] count2 = new int[26];  // Count for the second word
+        
+        // Count the frequency of each character in both words
+        for (int i = 0; i < s1.length(); i++) {
+            count1[s1.charAt(i) - 'a']++;
+            count2[s2.charAt(i) - 'a']++;
+        }
+        
+        // Compare the character counts
+        for (int i = 0; i < 26; i++) {
+            if (count1[i] != count2[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    // Method to group anagrams using basic loops
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> result = new ArrayList<>();
+        boolean[] grouped = new boolean[strs.length];  // Track grouped words
+        
+        for (int i = 0; i < strs.length; i++) {
+            if (!grouped[i]) {
+                List<String> group = new ArrayList<>();
+                group.add(strs[i]);
+                grouped[i] = true;
+                
+                for (int j = i + 1; j < strs.length; j++) {
+                    if (!grouped[j] && areAnagrams(strs[i], strs[j])) {
+                        group.add(strs[j]);
+                        grouped[j] = true;
+                    }
+                }
+                result.add(group);  // Add the group of anagrams
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String[] words = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        List<List<String>> result = groupAnagrams(words);
+        System.out.println(result);
+    }
+}
