@@ -1,0 +1,22 @@
+public class JumpGameBasic {
+    public static boolean canJump(int[] nums) {
+        int farthest = 0;
+        for (int i = 0; i < nums.length; i++) {
+            // If current index is farther than what we can reach
+            if (i > farthest) {
+                return false;
+            }
+            // Update the farthest index we can reach
+            farthest = Math.max(farthest, i + nums[i]);
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        int[] nums1 = {2, 3, 1, 1, 4};
+        System.out.println("Can jump: " + canJump(nums1));  // Output: true
+        
+        int[] nums2 = {3, 2, 1, 0, 4};
+        System.out.println("Can jump: " + canJump(nums2));  // Output: false
+    }
+}
