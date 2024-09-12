@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class WordBreakBasic {
+    public static boolean wordBreak(String s, List<String> wordDict) {
+        return wordBreakHelper(s, wordDict);
+    }
+
+    public static boolean wordBreakHelper(String s, List<String> wordDict) {
+        if (s.length() == 0) return true;
+
+        for (int i = 1; i <= s.length(); i++) {
+            String prefix = s.substring(0, i);
+
+            if (wordDict.contains(prefix)) {
+                String remaining = s.substring(i);
+                if (wordBreakHelper(remaining, wordDict)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        String s = "applepenapple";
+        List<String> wordDict = Arrays.asList("apple", "pen");
+        System.out.println(wordBreak(s, wordDict));  // Output: true
+    }
+}
