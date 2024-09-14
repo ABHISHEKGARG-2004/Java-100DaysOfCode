@@ -1,0 +1,29 @@
+public class EditDistanceRecursive {
+
+    public static int editDistance(String word1, String word2, int m, int n) {
+        // Base cases
+        if (m == 0) return n; // If word1 is empty, we need to insert all of word2
+        if (n == 0) return m; // If word2 is empty, we need to delete all of word1
+
+        // If the characters match, move to the next character in both strings
+        if (word1.charAt(m - 1) == word2.charAt(n - 1)) {
+            return editDistance(word1, word2, m - 1, n - 1);
+        }
+
+        // If the characters don't match, consider all three operations
+        return 1 + Math.min(
+                editDistance(word1, word2, m, n - 1),    // Insert
+                Math.min(
+                    editDistance(word1, word2, m - 1, n),  // Delete
+                    editDistance(word1, word2, m - 1, n - 1) // Replace
+                )
+        );
+    }
+
+    public static void main(String[] args) {
+        String word1 = "kitten";
+        String word2 = "sitting";
+        int result = editDistance(word1, word2, word1.length(), word2.length());
+        System.out.println("Edit Distance: " + result);
+    }
+}
