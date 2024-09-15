@@ -1,0 +1,17 @@
+public class UniquePathsBasic {
+    // Recursive function to find the number of paths
+    public static int countPaths(int m, int n) {
+        // Base case: if either m or n is 1, there's only one way to reach the end
+        if (m == 1 || n == 1) {
+            return 1;
+        }
+
+        // Recursive calls: move either down (reduce m) or right (reduce n)
+        return countPaths(m - 1, n) + countPaths(m, n - 1);
+    }
+
+    public static void main(String[] args) {
+        int m = 3, n = 2;
+        System.out.println("Unique Paths: " + countPaths(m, n));  // Output: 3
+    }
+}
