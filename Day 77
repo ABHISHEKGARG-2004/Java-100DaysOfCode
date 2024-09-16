@@ -1,0 +1,40 @@
+// First approach: Extending Thread class
+class NumberThread extends Thread {
+    public void run() {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(500); // Pausing for half a second
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+// Second approach: Implementing Runnable interface
+class LetterThread implements Runnable {
+    public void run() {
+        char letter = 'A';
+        for (int i = 0; i < 5; i++) {
+            System.out.println(letter++);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                System.out.println(e);
+            }
+        }
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        // Create and start the number thread
+        NumberThread numThread = new NumberThread();
+        numThread.start();
+        
+        // Create and start the letter thread
+        Thread letterThread = new Thread(new LetterThread());
+        letterThread.start();
+    }
+}
