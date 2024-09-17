@@ -1,0 +1,25 @@
+public class CapitalizeWords {
+    public static void main(String[] args) {
+        String sentence = "this is a sample sentence for day 78 of coding!";
+        String result = capitalizeFirstLetter(sentence);
+        System.out.println(result);
+    }
+
+    public static String capitalizeFirstLetter(String str) {
+        // Splitting the sentence into words
+        String[] words = str.split(" ");
+        StringBuilder capitalizedSentence = new StringBuilder();
+
+        for (String word : words) {
+            // Capitalize the first letter and append the rest of the word
+            if (word.length() > 0) {
+                char firstChar = Character.toUpperCase(word.charAt(0));
+                String restOfWord = word.substring(1).toLowerCase();
+                capitalizedSentence.append(firstChar).append(restOfWord).append(" ");
+            }
+        }
+
+        // Return the final string with trimmed extra space
+        return capitalizedSentence.toString().trim();
+    }
+}
