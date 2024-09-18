@@ -1,0 +1,49 @@
+public class DiagonalMatrixTraversal {
+    public static void main(String[] args) {
+        int[][] matrix = {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        };
+
+        int[] result = findDiagonalOrder(matrix);
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+    }
+
+    public static int[] findDiagonalOrder(int[][] matrix) {
+        if (matrix == null || matrix.length == 0) return new int[0];
+
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[] result = new int[rows * cols];
+        int index = 0;
+
+        // Traversing diagonally
+        for (int d = 0; d < rows + cols - 1; d++) {
+            int row = d < cols ? 0 : d - cols + 1;
+            int col = d < cols ? d : cols - 1;
+
+            if (d % 2 == 0) {
+                // Traverse upwards for even-numbered diagonals
+                while (row < rows && col >= 0) {
+                    result[index++] = matrix[row][col];
+                    row++;
+                    col--;
+                }
+            } else {
+                // Traverse downwards for odd-numbered diagonals
+                row = d < rows ? d : rows - 1;
+                col = d < rows ? 0 : d - rows + 1;
+                while (row >= 0 && col < cols) {
+                    result[index++] = matrix[row][col];
+                    row--;
+                    col++;
+                }
+            }
+        }
+
+        return result;
+    }
+}
