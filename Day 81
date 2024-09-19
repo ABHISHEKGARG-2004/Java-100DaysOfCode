@@ -1,0 +1,34 @@
+public class ToggleCase {
+    public static void main(String[] args) {
+        String input = "Hello World!";
+        String toggledString = toggleCase(input);
+        System.out.println("Original String: " + input);
+        System.out.println("Toggled String: " + toggledString);
+    }
+
+    public static String toggleCase(String str) {
+        StringBuilder toggled = new StringBuilder();
+
+        // Traverse each character in the string
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            // Check if it's an uppercase letter
+            if (Character.isUpperCase(ch)) {
+                // Convert to lowercase
+                toggled.append(Character.toLowerCase(ch));
+            } 
+            // Check if it's a lowercase letter
+            else if (Character.isLowerCase(ch)) {
+                // Convert to uppercase
+                toggled.append(Character.toUpperCase(ch));
+            } 
+            // If it's not a letter, leave it as it is
+            else {
+                toggled.append(ch);
+            }
+        }
+
+        return toggled.toString();
+    }
+}
