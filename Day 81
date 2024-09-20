@@ -1,0 +1,28 @@
+import java.util.*;
+
+public class Practice {
+
+    public static void main(String[] args) {
+        String str = "aaaabbbcddee";
+        String ans = "" + str.charAt(0);
+        int count = 1;
+
+        // Loop through the string
+        for (int i = 1; i < str.length(); i++) {
+            char curr = str.charAt(i);
+            char prev = str.charAt(i - 1);
+
+            // Increment the count for consecutive characters
+            if (curr == prev) {
+                count++;
+            } else {
+                ans = ans + count;  // Add the previous count
+                count = 1;  // Reset the count
+                ans = ans + curr;  // Add the new character
+            }
+        }
+        // Add the final count
+        ans = ans + count;
+        System.out.println(ans);
+    }
+}
