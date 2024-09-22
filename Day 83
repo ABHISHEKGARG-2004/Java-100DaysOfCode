@@ -1,0 +1,32 @@
+public class AlternatingMerge {
+    public static String mergeAlternating(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int i = 0, j = 0;
+
+        while (i < a.length() && j < b.length()) {
+            result.append(a.charAt(i));  // From string 'a'
+            result.append(b.charAt(j));  // From string 'b'
+            i++;
+            j++;
+        }
+
+        while (i < a.length()) {
+            result.append(a.charAt(i));  // Remaining from 'a'
+            i++;
+        }
+
+        while (j < b.length()) {
+            result.append(b.charAt(j));  // Remaining from 'b'
+            j++;
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String a = "abc";
+        String b = "pqrstuv";
+        String merged = mergeAlternating(a, b);
+        System.out.println("Merged String: " + merged);
+    }
+}
