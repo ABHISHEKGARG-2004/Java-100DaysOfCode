@@ -1,0 +1,35 @@
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class MirrorQueue {
+    public static void mirrorQueue(Queue<String> q) {
+        Stack<String> stack = new Stack<>();
+        int size = q.size();
+        
+        // Push all elements from the queue into the stack
+        for (int i = 0; i < size; i++) {
+            String ele = q.poll();
+            stack.push(ele);
+            q.add(ele);  // Keep the original order in the queue
+        }
+
+        // Pop elements from the stack and add to the queue (to mirror them)
+        while (!stack.isEmpty()) {
+            q.add(stack.pop());
+        }
+    }
+
+    public static void main(String[] args) {
+        Queue<String> q = new LinkedList<>();
+        q.add("code");
+        q.add("quotient");
+        
+        mirrorQueue(q);
+
+        // Print the mirrored queue
+        while (!q.isEmpty()) {
+            System.out.print(q.poll() + " ");
+        }
+    }
+}
