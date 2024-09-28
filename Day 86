@@ -1,0 +1,20 @@
+public class Main {
+    public static String shiftBy3(String input) {
+        StringBuilder result = new StringBuilder();
+        
+        for (int i = 0; i < input.length(); i++) {
+            char current = input.charAt(i);
+            // Shift by 3 places
+            char newChar = (char) ((current - 'A' + 3) % 26 + 'A');
+            result.append(newChar);
+        }
+        
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String str = "ADFZ";
+        System.out.println("Original: " + str);
+        System.out.println("Shifted: " + shiftBy3(str));
+    }
+}
