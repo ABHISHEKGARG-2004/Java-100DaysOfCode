@@ -1,0 +1,25 @@
+public class FirstNonRepeatingChar {
+    public static int findFirstNonRepeating(String s) {
+        int[] frequency = new int[256];  // Array for character frequency
+
+        // Step 1: Count frequency of each character
+        for (int i = 0; i < s.length(); i++) {
+            frequency[s.charAt(i)]++;
+        }
+
+        // Step 2: Find first character with frequency 1
+        for (int i = 0; i < s.length(); i++) {
+            if (frequency[s.charAt(i)] == 1) {
+                return i;
+            }
+        }
+
+        return -1;  // All characters are repeating
+    }
+
+    public static void main(String[] args) {
+        String input = "swiss";
+        int result = findFirstNonRepeating(input);
+        System.out.println("The index of the first non-repeating character is: " + result);
+    }
+}
