@@ -1,0 +1,33 @@
+public static String removeInvalidParentheses(String s) {
+    // First pass: Remove invalid ')'
+    StringBuilder sb = new StringBuilder();
+    int open = 0;
+    for (char c : s.toCharArray()) {
+        if (c == '(') open++;
+        else if (c == ')') {
+            if (open == 0) continue;
+            open--;
+        }
+        sb.append(c);
+    }
+
+    // Second pass: Remove invalid '(' from the end
+    StringBuilder result = new StringBuilder();
+    int close = 0;
+    for (int i = sb.length() - 1; i >= 0; i--) {
+        char c = sb.charAt(i);
+        if (c == ')') close++;
+        else if (c == '(') {
+            if (close == 0) continue;
+            close--;
+        }
+        result.append(c);
+    }
+
+    return result.reverse().toString();
+}
+
+public static void main(String[] args) {
+    String input = "a)b(c)d";
+    System.out.println("Valid Parentheses: " + removeInvalidParentheses(input));
+}
