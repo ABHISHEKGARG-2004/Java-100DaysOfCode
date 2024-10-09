@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class PalindromePartitioning {
+
+    // Check if the substring is a palindrome
+    public static boolean isPalindrome(String str, int low, int high) {
+        while (low < high) {
+            if (str.charAt(low) != str.charAt(high)) {
+                return false;
+            }
+            low++;
+            high--;
+        }
+        return true;
+    }
+
+    // Recursive function to partition and check palindromes
+    public static void partitionHelper(String s, int start, List<String> currentList, List<List<String>> result) {
+        if (start >= s.length()) {
+            result.add(new ArrayList<>(currentList));
+            return;
+        }
+
+        for (int i = start; i < s.length(); i++) {
+            if (isPalindrome(s, start, i)) {
+                currentList.add(s.substring(start, i + 1)); // Choose
+                partitionHelper(s, i + 1, currentList, result); // Explore
+                currentList.remove(currentList.size() - 1); // Unchoose
+            }
+        }
+    }
+
+    // Main function to return all palindrome partitions
+    public static List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
+        partitionHelper(s, 0, new ArrayList<>(), result);
+        return result;
+    }
+
+    // Main method to test the partitioning
+    public static void main(String[] args) {
+        String s = "aab";
+        List<List<String>> partitions = partition(s);
+
+        System.out.println("Palindrome partitions of '" + s + "':");
+        for (List<String> partition : partitions) {
+            System.out.println(partition);
+        }
+    }
+}
