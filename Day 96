@@ -1,0 +1,33 @@
+import java.util.HashMap;
+
+public class LongestSubstringKDistinct {
+    public static int longestSubstringWithKDistinct(String s, int k) {
+        if (s == null || s.length() == 0 || k == 0) return 0;
+        
+        HashMap<Character, Integer> map = new HashMap<>();
+        int maxLength = 0, start = 0;
+
+        for (int end = 0; end < s.length(); end++) {
+            char rightChar = s.charAt(end);
+            map.put(rightChar, map.getOrDefault(rightChar, 0) + 1);
+
+            while (map.size() > k) {
+                char leftChar = s.charAt(start);
+                map.put(leftChar, map.get(leftChar) - 1);
+                if (map.get(leftChar) == 0) {
+                    map.remove(leftChar);
+                }
+                start++;
+            }
+            maxLength = Math.max(maxLength, end - start + 1);
+        }
+
+        return maxLength;
+    }
+
+    public static void main(String[] args) {
+        String s = "eceba";
+        int k = 2;
+        System.out.println("Longest substring with at most " + k + " distinct characters is: " + longestSubstringWithKDistinct(s, k));
+    }
+}
