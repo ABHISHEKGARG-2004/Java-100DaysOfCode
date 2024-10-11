@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class WordLadderBasic {
+
+    // Function to find the shortest transformation sequence
+    public static int findLadder(String beginWord, String endWord, Set<String> wordList) {
+        if (beginWord.equals(endWord)) return 1;  // If both words are same, no transformation needed
+        
+        // Recursively find transformations
+        return findLadderHelper(beginWord, endWord, wordList, 1);
+    }
+    
+    private static int findLadderHelper(String currentWord, String endWord, Set<String> wordList, int step) {
+        if (currentWord.equals(endWord)) return step;  // Found the endWord, return steps
+        
+        int shortestSteps = Integer.MAX_VALUE;
+        for (int i = 0; i < currentWord.length(); i++) {
+            char[] wordArray = currentWord.toCharArray();
+            for (char ch = 'a'; ch <= 'z'; ch++) {
+                wordArray[i] = ch;  // Change one letter at a time
+                String newWord = new String(wordArray);
+                
+                // If newWord is valid and exists in the word list
+                if (wordList.contains(newWord)) {
+                    wordList.remove(newWord);  // Mark it as visited
+                    int result = findLadderHelper(newWord, endWord, wordList, step + 1);
+                    shortestSteps = Math.min(shortestSteps, result);
+                    wordList.add(newWord);  // Backtrack to try other possibilities
+                }
+            }
+        }
+        
+        return shortestSteps == Integer.MAX_VALUE ? 0 : shortestSteps;  // If no valid transformation
+    }
+
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "cog";
+        Set<String> wordList = new HashSet<>(Arrays.asList("hot", "dot", "dog", "lot", "log", "cog"));
+        
+        int result = findLadder(beginWord, endWord, wordList);
+        System.out.println("The shortest transformation sequence length is: " + result);
+    }
+}
