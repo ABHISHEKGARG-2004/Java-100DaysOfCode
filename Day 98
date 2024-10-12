@@ -1,0 +1,35 @@
+public class SplitArrayLargestSum {
+
+    // Function to find the minimum largest sum after splitting array into m subarrays
+    public static int splitArray(int[] nums, int m) {
+        int n = nums.length;
+        int result = Integer.MAX_VALUE;
+
+        // Helper function to calculate the sum of the elements from index i to j
+        int sum(int[] arr, int i, int j) {
+            int s = 0;
+            for (int k = i; k <= j; k++) {
+                s += arr[k];
+            }
+            return s;
+        }
+
+        // Try all possible ways to split the array into m parts
+        for (int i = 1; i <= n - m + 1; i++) {
+            for (int j = i + 1; j <= n - m + 2; j++) {
+                // Calculate the maximum sum of the resulting m subarrays
+                int maxSum = Math.max(sum(nums, 0, i - 1), 
+                                      Math.max(sum(nums, i, j - 1), sum(nums, j, n - 1)));
+                // Update the result with the minimum of all maximum sums
+                result = Math.min(result, maxSum);
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {7, 2, 5, 10, 8};
+        int m = 2;
+        System.out.println("The minimum largest sum after splitting the array is: " + splitArray(nums, m));
+    }
+}
