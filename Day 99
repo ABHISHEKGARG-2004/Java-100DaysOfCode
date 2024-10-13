@@ -1,0 +1,29 @@
+public class FibonacciModulo {
+
+    // Method to find the nth Fibonacci number modulo m
+    public static int fibonacciModulo(int n, int m) {
+        if (n <= 1) {
+            return n % m;
+        }
+        
+        int a = 0, b = 1;
+        int fib = 1;
+        
+        // Generate the Fibonacci sequence up to the nth number
+        for (int i = 2; i <= n; i++) {
+            fib = (a + b) % m; // Update with modulo m at each step
+            a = b;
+            b = fib;
+        }
+        
+        return fib;
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Example: Find the 5th Fibonacci number
+        int m = 8; // Modulo value
+
+        int result = fibonacciModulo(n, m);
+        System.out.println("The " + n + "th Fibonacci number modulo " + m + " is: " + result);
+    }
+}
